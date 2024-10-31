@@ -56,13 +56,13 @@ install $NITRUX_HW_PKGS
 ORIGINAL_DIR=$(pwd)
 
 TEMP_DIR1=$(mktemp -d)
-git clone https://github.com/medusalix/xone "$TEMP_DIR1"
+git clone -b fix-6.12 --single-branch https://github.com/tskaar/xone.git "$TEMP_DIR1"
 cd "$TEMP_DIR1"
 sh install.sh
 cd "$ORIGINAL_DIR"
 
 TEMP_DIR2=$(mktemp -d)
-git clone https://github.com/atar-axis/xpadneo "$TEMP_DIR2"
+git clone https://github.com/atar-axis/xpadneo.git "$TEMP_DIR2"
 cd "$TEMP_DIR2"
 bash install.sh
 cd "$ORIGINAL_DIR"

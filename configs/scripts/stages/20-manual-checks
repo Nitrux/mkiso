@@ -171,7 +171,6 @@ directories_to_check=(
 check_directories "${directories_to_check[@]}"
 
 check_file_contents "/etc/sddm.conf.d/kde_settings.conf"
-check_file_contents "/etc/sddm.conf"
 check_file_contents "/etc/NetworkManager/NetworkManager.conf"
 check_file_contents "/etc/resolv.conf"
 # check_file_contents "/etc/rc.conf"

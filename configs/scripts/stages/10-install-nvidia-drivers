@@ -38,7 +38,7 @@ source /configs/scripts/others/apt-funcs
 BASE_URL="http://download.nvidia.com/XFree86/Linux-x86_64/"
 USER_AGENT="BrightSign/8.2.55.5 (XT1144) Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.3 Chrome/69.0.3497.128 Safari/537.36"
 DESTINATION="$(mktemp -d)"
-NV_INST_VER="560.35.03"
+NV_INST_VER="565.57.01"
 
 LATEST_FILE="$NV_INST_VER $NV_INST_VER/NVIDIA-Linux-x86_64-$NV_INST_VER.run"
 FILE_PATH="$(echo "$LATEST_FILE" | awk '{print $2}')"

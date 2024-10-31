@@ -406,3 +406,8 @@ wget -P "$DEST_DIR" "$UNDEBIANIZE_URL"
 
 chmod +x "$DEST_DIR/linker"
 chmod +x "$DEST_DIR/undebianize"
+
+
+# -- Edit Kvantum Manager launcher.
+
+sed -i 's+Categories=Qt;Utility;Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;+Categories=Qt;Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;+g' /usr/share/applications/kvantummanager.desktop

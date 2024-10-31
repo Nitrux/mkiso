@@ -229,15 +229,17 @@ puts "EDITING CONF. FILES."
 # Root content ends here    #
 #############################
 
-puts "PERFORM MANUAL CHECKS."
-
-20-manual-checks
-
 
 # -- Create a list of installed packages at end.
 
 list_installed_text_end
 
+
+# -- Check files and directories.
+
+puts "PERFORM MANUAL CHECKS."
+
+20-manual-checks
 
 puts "EXITING BOOTSTRAP."
 
