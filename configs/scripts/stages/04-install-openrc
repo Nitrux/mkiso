@@ -31,11 +31,11 @@ source /configs/scripts/others/apt-funcs
 
 
 # -- Add Debian-flavored OpenRC to use it as init.
+# -- FIXME: Replace initscripts with either A) OpenRC upstream service scripts or B) Made-from-scratch OpenRC service scripts.
 
 OPENRC_INIT_PKGS='
 	initscripts
 	openrc
-	policycoreutils
 '
 
 install $OPENRC_INIT_PKGS

@@ -30,7 +30,7 @@ set -eu
 source /configs/scripts/others/apt-funcs
 
 
-# -- Downgrade PAM packages because 1) Newer packages depend on libsystemd0 (why?) and 2) Newer packages (1.5.3-7) break something that causes kscreenlocker not to accept the password to unlock the session.
+# -- Downgrade PAM packages because 1) Newer packages depend on libsystemd0 (why?) and 2) Newer packages (>=1.5.3-7) break something that causes kscreenlocker not to accept the password to unlock the session.
 
 DOWNGRADE_PAM_PKGS='
 	libpam-modules=1.5.2-6+deb12u1
@@ -46,14 +46,16 @@ install_downgrades_hold $DOWNGRADE_PAM_PKGS
 # -- Specify our packages because Debian decided to make libsystemd mandatory for PAM and login for no reason since neither requires it. Also, mount is broken or something? *sigh*
 
 DEVUAN_EUDEV_PKGS='
+	bsdutils/forky
 	eudev
+	libstdc++6=14.2.0-6
 	login=1:4.15.2-4+nitrux
 	mount/forky
 	udev/forky
 	util-linux/forky
 '
 
-install $DEVUAN_EUDEV_PKGS
+install_downgrades $DEVUAN_EUDEV_PKGS
 
 
 # -- Remove libsystemd0.

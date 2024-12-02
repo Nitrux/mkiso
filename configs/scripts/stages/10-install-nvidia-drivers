@@ -76,6 +76,24 @@ if ! grep -q "^blacklist nouveau$" /etc/modprobe.d/blacklist.conf; then
 fi
 
 
+# -- Add ub-device-create binary to enable the creation of NVIDIA device nodes.
+
+FILE_URL="https://raw.githubusercontent.com/Nitrux/storage/refs/heads/master/Other/ub-device-create"
+DEST_DIR="/usr/sbin"
+DEST_FILE="$DEST_DIR/ub-device-create"
+if curl -L -o "$DEST_FILE" "$FILE_URL"; then
+    chmod +x "$DEST_FILE"
+else
+    exit 1
+fi
+
+
+# -- Add D-Bus configuration file for NVIDIA Dynamic Boost.
+# -- The official instructions indicate to put it /etc/dbus-1/system, but I don't know if it will work.
+
+cp /usr/share/doc/NVIDIA_GLX-1.0/nvidia-dbus.conf /etc/dbus-1/system.d
+
+
 # -- Remove build dependencies.
 
 NVIDIA_DRV_DEL_PKGS='

@@ -94,12 +94,9 @@ else
 fi
 
 
-# -- Create necessary directories to put files for kboot.
+# -- Create necessary directories to put files for kboot and create soft links for liquorix kernel files.
 
 mkdir -p /kboot/{debian,mainline,liquorix}
-
-
-# -- Move and create soft links for liquorix kernel files.
 
 for file in /boot/vmlinuz-*liquorix-amd64; do
     create_symlink "$file" "/kboot/liquorix/vmlinuz"
@@ -110,7 +107,7 @@ for file in /boot/initrd.img-*liquorix-amd64; do
 done
 
 
-# -- Add Flathub.
+# -- Add Flathub; this will add it as a system remote though since the script runs as root.
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 

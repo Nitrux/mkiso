@@ -39,6 +39,7 @@ cp /configs/files/sources/sources.list.liquorix /etc/apt/sources.list.d/liquorix
 
 update
 
+
 DEFAULT_KERNEL_PKG='
 	linux-image-liquorix
 '

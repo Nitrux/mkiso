@@ -78,3 +78,15 @@ cabextract -F FW_ACC_00U.bin driver.cab
 echo "$FIRMWARE_HASH  FW_ACC_00U.bin" | sha256sum -c
 mv FW_ACC_00U.bin /lib/firmware/xow_dongle.bin
 rm driver.cab
+
+
+# -- Install zenergy to display power consumption for AMD Zen processors.
+
+TEMP_DIR3=$(mktemp -d)
+git clone https://github.com/Nitrux/zenergy.git "$TEMP_DIR3"
+cp -r "$TEMP_DIR3" /usr/src/zenergy-1.0
+dkms add -m zenergy -v 1.0
+dkms build -m zenergy -v 1.0
+dkms install --force -m zenergy -v 1.0
+echo "zenergy" | tee /etc/modules-load.d/zenergy.conf
+cd "$ORIGINAL_DIR"

@@ -95,7 +95,10 @@ tar xf "$config_dir/rootfs.tar.xz" -C "$build_dir"
 
 # -- Populate $build_dir.
 
-iso_tool_bootstrap_log="$PWD/${image%.iso}.bstlog"
+build_artifacts_dir="$PWD/build-artifacts/${image%.iso}"
+iso_tool_bootstrap_log="$build_artifacts_dir/${image%.iso}.bstlog"
+
+mkdir -p "$build_artifacts_dir"
 
 rm -r /bin/runch || true 
 axel -o /bin/ -n 10 https://raw.githubusercontent.com/Nitrux/tools/master/runch
@@ -181,9 +184,9 @@ mkiso \
 sha512sum "$output_dir/$image" | sed "s|$output_dir/||" > "$output_dir/${image%.iso}.sha512"
 
 
-# -- Move files to current directory.
+# -- Move files to specific directory.
 
-mv "$output_dir"/* "$PWD"
+mv "$output_dir"/* "$build_artifacts_dir"
 
 
 # -- Clean up build directories.
