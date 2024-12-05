@@ -178,5 +178,6 @@ check_file_contents "/etc/resolv.conf"
 check_file_contents "/etc/elogind/logind.conf"
 check_file_contents "/etc/elogind/sleep.conf"
 check_file_contents "/etc/elogind/sleep.conf.d/10-elogind.conf"
+check_file_contents "/etc/conf.d/agetty"
 
 check_initramfs_size
