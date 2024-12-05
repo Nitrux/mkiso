@@ -30,6 +30,11 @@ set -eu
 source /configs/scripts/others/apt-funcs
 
 
+# -- Delete the agetty conf file added by the openrc package from Debian because it breaks stuff they don't even correctly support.
+
+rm -f /etc/conf.d/agetty
+
+
 # -- Add OpenRC configuration. We need to put this package at this stage. Otherwise, *WE* end up with an unbootable system because Debian decided to make the package "openrc" unusable by not adding the upstream service scripts and instead made that package rely on initscripts to avoid causing a conflict with sysv. However, doing this means that OpenRC is using scripts for SySV, which makes the boot process slower. Nice! /s.
 
 OPENRC_CONFIG='
