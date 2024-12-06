@@ -90,3 +90,29 @@ dkms build -m zenergy -v 1.0
 dkms install --force -m zenergy -v 1.0
 echo "zenergy" | tee /etc/modules-load.d/zenergy.conf
 cd "$ORIGINAL_DIR"
+
+
+# -- Install XR Linux Driver  to automatically recognize supported XR glasses. 
+
+ARCH=$(uname -m)
+BASE_URL="https://github.com/wheaney/XRLinuxDriver/releases/latest/download"
+ARCHIVE_NAME="xrDriver-${ARCH}.tar.gz"
+INSTALL_DIR="/opt/xr_driver"
+
+curl -L -o "${ARCHIVE_NAME}" "${BASE_URL}/${ARCHIVE_NAME}"
+
+mkdir -p "${INSTALL_DIR}"
+tar -xzf "${ARCHIVE_NAME}" -C "${INSTALL_DIR}"
+
+install -Dm755 "${INSTALL_DIR}/bin/xrDriver" /usr/local/bin/xrDriver
+install -Dm755 "${INSTALL_DIR}/bin/xr_driver_cli" /usr/local/bin/xr_driver_cli
+install -Dm755 "${INSTALL_DIR}/bin/xr_driver_uninstall" /usr/local/bin/xr_driver_uninstall
+install -Dm755 "${INSTALL_DIR}/bin/xr_driver_verify" /usr/local/bin/xr_driver_verify
+install -Dm755 "${INSTALL_DIR}/lib/libGlassSDK.so" /usr/local/lib/libGlassSDK.so
+install -Dm755 "${INSTALL_DIR}/lib/libRayNeoXRMiniSDK.so" /usr/local/lib/libRayNeoXRMiniSDK.so
+
+install -Dm644 "${INSTALL_DIR}/udev/"* /usr/lib/udev/rules.d/
+udevadm control --reload-rules
+udevadm trigger
+
+rm -f "${ARCHIVE_NAME}"
