@@ -103,26 +103,9 @@ curl -L -o "${ARCHIVE_NAME}" "${BASE_URL}/${ARCHIVE_NAME}"
 
 tar -xzf "${ARCHIVE_NAME}" -C "${TMP_DIR}"
 
-cp "${TMP_DIR}/bin/xrDriver" /usr/local/bin/xrDriver
-chmod 755 /usr/local/bin/xrDriver
-
-cp "${TMP_DIR}/bin/xr_driver_cli" /usr/local/bin/xr_driver_cli
-chmod 755 /usr/local/bin/xr_driver_cli
-
-cp "${TMP_DIR}/bin/xr_driver_uninstall" /usr/local/bin/xr_driver_uninstall
-chmod 755 /usr/local/bin/xr_driver_uninstall
-
-cp "${TMP_DIR}/bin/xr_driver_verify" /usr/local/bin/xr_driver_verify
-chmod 755 /usr/local/bin/xr_driver_verify
-
-cp "${TMP_DIR}/lib/libGlassSDK.so" /usr/local/lib/libGlassSDK.so
-chmod 755 /usr/local/lib/libGlassSDK.so
-
-cp "${TMP_DIR}/lib/libRayNeoXRMiniSDK.so" /usr/local/lib/libRayNeoXRMiniSDK.so
-chmod 755 /usr/local/lib/libRayNeoXRMiniSDK.so
-
-cp "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
-chmod 644 /usr/lib/udev/rules.d/*
+mv "${TMP_DIR}/bin/"* /usr/bin/
+mv "${TMP_DIR}/lib/"* /usr/lib/
+mv "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
 
 rm -rf "${TMP_DIR}"
 rm -f "${ARCHIVE_NAME}"
