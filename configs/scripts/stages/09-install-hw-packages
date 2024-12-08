@@ -81,6 +81,7 @@ rm driver.cab
 
 
 # -- Install zenergy to display power consumption for AMD Zen processors.
+# -- FIXME: There are no Debian packages available, if and when they are, switch to use them instead.
 
 TEMP_DIR3=$(mktemp -d)
 git clone https://github.com/Nitrux/zenergy.git "$TEMP_DIR3"
@@ -92,7 +93,8 @@ echo "zenergy" | tee /etc/modules-load.d/zenergy.conf
 cd "$ORIGINAL_DIR"
 
 
-# -- Install XR Linux Driver to automatically recognize supported XR glasses. 
+# -- Install XR Linux Driver to automatically recognize supported XR glasses.
+# -- FIXME: There are no Debian packages available, if and when they are, switch to use them instead.
 
 ARCH=$(uname -m)
 BASE_URL="https://github.com/wheaney/XRLinuxDriver/releases/latest/download"
