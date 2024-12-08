@@ -108,16 +108,8 @@ download_url=$(echo "${response}" | grep -oP "https://github.com/${REPO}/release
 curl -L -o "${ARCHIVE_NAME}" "${download_url}"
 tar -xzf "${ARCHIVE_NAME}" -C "${TMP_DIR}"
 
-if [ -d "${TMP_DIR}/bin" ]; then
-    mv "${TMP_DIR}/bin/"* /usr/bin/
-fi
-
-if [ -d "${TMP_DIR}/lib" ]; then
-    mv "${TMP_DIR}/lib/"* /usr/lib/
-fi
-
-if [ -d "${TMP_DIR}/udev" ]; then
-    mv "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
-fi
+mv "${TMP_DIR}/xr_driver/bin/"* /usr/bin/
+mv "${TMP_DIR}/xr_driver/lib/"* /usr/lib/x86_64-linux-gnu/
+mv "${TMP_DIR}/xr_driver/udev/"* /etc/udev/rules.d/
 
 rm -f "${ARCHIVE_NAME}"
