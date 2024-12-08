@@ -97,17 +97,28 @@ cd "$ORIGINAL_DIR"
 # -- FIXME: There are no Debian packages available, if and when they are, switch to use them instead.
 
 ARCH=$(uname -m)
-BASE_URL="https://github.com/wheaney/XRLinuxDriver/releases/latest/download"
-ARCHIVE_NAME="xrDriver-${ARCH}.tar.gz"
+REPO="wheaney/XRLinuxDriver"
+API_URL="https://api.github.com/repos/${REPO}/releases/latest"
 TMP_DIR=$(mktemp -d)
+ARCHIVE_NAME="xrDriver-${ARCH}.tar.gz"
 
-curl -L -o "${ARCHIVE_NAME}" "${BASE_URL}/${ARCHIVE_NAME}"
+response=$(curl -sL "${API_URL}")
+download_url=$(echo "${response}" | grep -oP "https://github.com/${REPO}/releases/download/.*/xrDriver-${ARCH}.tar.gz")
 
+curl -L -o "${ARCHIVE_NAME}" "${download_url}"
 tar -xzf "${ARCHIVE_NAME}" -C "${TMP_DIR}"
 
-mv "${TMP_DIR}/bin/"* /usr/bin/
-mv "${TMP_DIR}/lib/"* /usr/lib/
-mv "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
+if [ -d "${TMP_DIR}/bin" ]; then
+    mv "${TMP_DIR}/bin/"* /usr/local/bin/
+fi
+
+if [ -d "${TMP_DIR}/lib" ]; then
+    mv "${TMP_DIR}/lib/"* /usr/local/lib/
+fi
+
+if [ -d "${TMP_DIR}/udev" ]; then
+    mv "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
+fi
 
 rm -rf "${TMP_DIR}"
 rm -f "${ARCHIVE_NAME}"
