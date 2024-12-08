@@ -97,20 +97,32 @@ cd "$ORIGINAL_DIR"
 ARCH=$(uname -m)
 BASE_URL="https://github.com/wheaney/XRLinuxDriver/releases/latest/download"
 ARCHIVE_NAME="xrDriver-${ARCH}.tar.gz"
-INSTALL_DIR="/opt/xr_driver"
+TMP_DIR=$(mktemp -d)
 
 curl -L -o "${ARCHIVE_NAME}" "${BASE_URL}/${ARCHIVE_NAME}"
 
-mkdir -p "${INSTALL_DIR}"
-tar -xzf "${ARCHIVE_NAME}" -C "${INSTALL_DIR}"
+tar -xzf "${ARCHIVE_NAME}" -C "${TMP_DIR}"
 
-install -m755 "${INSTALL_DIR}/bin/xrDriver" /usr/local/bin/xrDriver
-install -m755 "${INSTALL_DIR}/bin/xr_driver_cli" /usr/local/bin/xr_driver_cli
-install -m755 "${INSTALL_DIR}/bin/xr_driver_uninstall" /usr/local/bin/xr_driver_uninstall
-install -m755 "${INSTALL_DIR}/bin/xr_driver_verify" /usr/local/bin/xr_driver_verify
-install -m755 "${INSTALL_DIR}/lib/libGlassSDK.so" /usr/local/lib/libGlassSDK.so
-install -m755 "${INSTALL_DIR}/lib/libRayNeoXRMiniSDK.so" /usr/local/lib/libRayNeoXRMiniSDK.so
+cp "${TMP_DIR}/bin/xrDriver" /usr/local/bin/xrDriver
+chmod 755 /usr/local/bin/xrDriver
 
-install -m644 "${INSTALL_DIR}/udev/"* /usr/lib/udev/rules.d/
+cp "${TMP_DIR}/bin/xr_driver_cli" /usr/local/bin/xr_driver_cli
+chmod 755 /usr/local/bin/xr_driver_cli
 
+cp "${TMP_DIR}/bin/xr_driver_uninstall" /usr/local/bin/xr_driver_uninstall
+chmod 755 /usr/local/bin/xr_driver_uninstall
+
+cp "${TMP_DIR}/bin/xr_driver_verify" /usr/local/bin/xr_driver_verify
+chmod 755 /usr/local/bin/xr_driver_verify
+
+cp "${TMP_DIR}/lib/libGlassSDK.so" /usr/local/lib/libGlassSDK.so
+chmod 755 /usr/local/lib/libGlassSDK.so
+
+cp "${TMP_DIR}/lib/libRayNeoXRMiniSDK.so" /usr/local/lib/libRayNeoXRMiniSDK.so
+chmod 755 /usr/local/lib/libRayNeoXRMiniSDK.so
+
+cp "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
+chmod 644 /usr/lib/udev/rules.d/*
+
+rm -rf "${TMP_DIR}"
 rm -f "${ARCHIVE_NAME}"
