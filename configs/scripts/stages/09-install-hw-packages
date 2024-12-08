@@ -22,7 +22,7 @@
 #    STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.   #
 #############################################################################################################################################################################
 
-set -eu
+set -xeu
 
 # -- Source APT commands as functions.
 # shellcheck source=/dev/null
@@ -109,16 +109,15 @@ curl -L -o "${ARCHIVE_NAME}" "${download_url}"
 tar -xzf "${ARCHIVE_NAME}" -C "${TMP_DIR}"
 
 if [ -d "${TMP_DIR}/bin" ]; then
-    mv "${TMP_DIR}/bin/"* /usr/local/bin/
+    mv "${TMP_DIR}/bin/"* /usr/bin/
 fi
 
 if [ -d "${TMP_DIR}/lib" ]; then
-    mv "${TMP_DIR}/lib/"* /usr/local/lib/
+    mv "${TMP_DIR}/lib/"* /usr/lib/
 fi
 
 if [ -d "${TMP_DIR}/udev" ]; then
     mv "${TMP_DIR}/udev/"* /usr/lib/udev/rules.d/
 fi
 
-rm -rf "${TMP_DIR}"
 rm -f "${ARCHIVE_NAME}"
