@@ -92,7 +92,7 @@ echo "zenergy" | tee /etc/modules-load.d/zenergy.conf
 cd "$ORIGINAL_DIR"
 
 
-# -- Install XR Linux Driver  to automatically recognize supported XR glasses. 
+# -- Install XR Linux Driver to automatically recognize supported XR glasses. 
 
 ARCH=$(uname -m)
 BASE_URL="https://github.com/wheaney/XRLinuxDriver/releases/latest/download"
