@@ -49,6 +49,7 @@ MESA_LIBS_PKGS='
 '
 
 only_upgrade $MESA_LIBS_PKGS
+autoremove
 
 rm \
 	/etc/apt/sources.list.d/debian-unstable-repo.list
