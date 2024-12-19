@@ -61,7 +61,7 @@ printf '%s\n' fuse exfat loop >> /etc/modules-load.d/additional-modules-boot-tim
 
 # -- Add Hyper-V modules to load at boot time.
 
-printf '%s\n' hv_utils hv_vmbus hv_storvsc hv_blkvsc hv_netvsc >> /etc/modules-load.d/hyperv-modules-boot-time.conf
+printf '%s\n' hv_balloon hv_netvsc hv_storvsc hv_utils hv_vmbus hv_sock >> /etc/modules-load.d/hyperv-modules-boot-time.conf
 
 
 # -- Remove unwanted kernel and initrd links from /boot and /.
