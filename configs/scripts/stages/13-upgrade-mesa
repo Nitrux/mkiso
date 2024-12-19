@@ -32,26 +32,26 @@ source /configs/scripts/others/apt-funcs
 
 # -- Upgrade the MESA packages.
 
-# cp /configs/files/sources/sources.list.debian.unstable /etc/apt/sources.list.d/debian-unstable-repo.list
+cp /configs/files/sources/sources.list.debian.unstable /etc/apt/sources.list.d/debian-unstable-repo.list
 
-# update
+update
 
-# MESA_LIBS_PKGS='
-#     libegl-mesa0/unstable
-#     libgbm1/unstable
-#     libgl1-mesa-dri/unstable
-#     libglapi-mesa/unstable
-#     libglx-mesa0/unstable
-#     libxatracker2/unstable
-#     mesa-va-drivers/unstable
-#     mesa-vdpau-drivers/unstable
-#     mesa-vulkan-drivers/unstable
-# '
+MESA_LIBS_PKGS='
+    libegl-mesa0/unstable
+    libgbm1/unstable
+    libgl1-mesa-dri/unstable
+    libglapi-mesa/unstable
+    libglx-mesa0/unstable
+    libxatracker2/unstable
+    mesa-va-drivers/unstable
+    mesa-vdpau-drivers/unstable
+    mesa-vulkan-drivers/unstable
+'
 
-# only_upgrade $MESA_LIBS_PKGS
-# autoremove
+only_upgrade $MESA_LIBS_PKGS
+autoremove
 
-# rm \
-# 	/etc/apt/sources.list.d/debian-unstable-repo.list
+rm \
+	/etc/apt/sources.list.d/debian-unstable-repo.list
 
-# update
+update
