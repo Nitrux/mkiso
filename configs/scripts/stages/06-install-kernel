@@ -53,27 +53,3 @@ remove_repo_keys \
 	9AE4078033F8024D > /dev/null
 
 update
-
-
-# -- Generate a new Secure Boot signing key.
-
-update-secureboot-policy --new-key
-
-for ext in der priv; do mv /var/lib/shim-signed/mok/MOK.$ext /var/lib/shim-signed/mok/MOK-Kernel.$ext; done
-
-
-# -- Convert generated sign key to PEM format.
-
-openssl x509 -inform der -in /var/lib/shim-signed/mok/MOK-Kernel.der -out /var/lib/shim-signed/mok/MOK-Kernel.pem
-
-
-# -- Sign kernel with generated MOK certificate to use with Secure Boot.
-
-latest_kernel=$(find /boot -maxdepth 1 -name 'vmlinuz*' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)
-
-sbsign --key "/var/lib/shim-signed/mok/MOK-Kernel.priv" \
-       --cert "/var/lib/shim-signed/mok/MOK-Kernel.pem" \
-       --output "/boot/$(basename "$latest_kernel")" \
-       "$latest_kernel"
-
-sbverify --list "$latest_kernel"
