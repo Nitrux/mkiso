@@ -55,6 +55,11 @@ remove_repo_keys \
 update
 
 
+# -- Generate a new Secure Boot signing key.
+
+update-secureboot-policy --new-key
+
+
 # -- Sign kernel with Canonical MOK certificate to use with Secure Boot.
 
 latest_kernel=$(find /boot -maxdepth 1 -name 'vmlinuz*' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)
