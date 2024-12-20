@@ -67,7 +67,7 @@ for ext in der priv; do mv /var/lib/shim-signed/mok/MOK.$ext /var/lib/shim-signe
 openssl x509 -inform der -in /var/lib/shim-signed/mok/MOK-Kernel.der -out /var/lib/shim-signed/mok/MOK-Kernel.pem
 
 
-# -- Sign kernel with Canonical MOK certificate to use with Secure Boot.
+# -- Sign kernel with generated MOK certificate to use with Secure Boot.
 
 latest_kernel=$(find /boot -maxdepth 1 -name 'vmlinuz*' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)
 
