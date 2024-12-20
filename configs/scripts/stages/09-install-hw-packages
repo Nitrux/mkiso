@@ -66,7 +66,7 @@ TEMP_DIR2=$(mktemp -d)
 git clone https://github.com/atar-axis/xpadneo.git "$TEMP_DIR2"
 cd "$TEMP_DIR2"
 sed -i '/^\s*set\s\+-e\s*$/d' install.sh
-sh install.sh
+bash install.sh
 cd "$ORIGINAL_DIR"
 
 
