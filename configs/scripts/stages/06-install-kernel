@@ -59,6 +59,8 @@ update
 
 update-secureboot-policy --new-key
 
+for ext in der priv; do mv /var/lib/shim-signed/mok/MOK.$ext /var/lib/shim-signed/mok/MOK-Kernel.$ext; done
+
 
 # -- Convert generated sign key to PEM format.
 
