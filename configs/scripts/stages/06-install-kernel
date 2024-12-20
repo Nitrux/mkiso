@@ -53,3 +53,15 @@ remove_repo_keys \
 	9AE4078033F8024D > /dev/null
 
 update
+
+
+# -- Sign kernel with Canonical MOK certificate to use with Secure Boot.
+
+latest_kernel=$(find /boot -maxdepth 1 -name 'vmlinuz*' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)
+
+sbsign --key "/var/lib/shim-signed/mok/MOK-Kernel.priv" \
+       --cert "/var/lib/shim-signed/mok/MOK-Kernel.pem" \
+       --output "/boot/$(basename "$latest_kernel")" \
+       "$latest_kernel"
+
+sbverify --list "$latest_kernel"
