@@ -60,6 +60,11 @@ update
 update-secureboot-policy --new-key
 
 
+# -- Convert generated sign key to PEM format.
+
+openssl x509 -inform der -in /var/lib/shim-signed/mok/MOK-Kernel.der -out /var/lib/shim-signed/mok/MOK-Kernel.pem
+
+
 # -- Sign kernel with Canonical MOK certificate to use with Secure Boot.
 
 latest_kernel=$(find /boot -maxdepth 1 -name 'vmlinuz*' -type f -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)
