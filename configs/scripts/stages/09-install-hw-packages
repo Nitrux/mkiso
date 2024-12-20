@@ -74,7 +74,7 @@ mv FW_ACC_00U.bin /lib/firmware/xow_dongle.bin
 rm driver.cab
 
 
-# -- The developer of xpadneo updated the install script on 19/12/24 (commit 875d5aa6d5789717ea5c02e4025bd398f248713d) to exit on errors with the comment "Fixes a problem where the installer would not exit if the git clone is not properly set up." However, the script was working fine, installing the driver with DKMS. While now, it simply quits.
+# -- The developer of xpadneo updated the install script on 19/12/24 (commit 875d5aa6) to exit on errors with the comment, "Fixes a problem where the installer would not exit if the git clone is not properly set up." However, the script was working fine, installing the driver with DKMS. While now, it simply quits. Thus, we must revert this change so the script builds the driver.
 # -- FIXME: There are no Debian packages available, if and when they are, switch to use them instead.
 
 TEMP_DIR2=$(mktemp -d)
