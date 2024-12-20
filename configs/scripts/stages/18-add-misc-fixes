@@ -397,15 +397,12 @@ fi
 DEST_DIR="/usr/bin"
 LINKER_URL="https://raw.githubusercontent.com/Nitrux/storage/master/Scripts/linker"
 UNDEBIANIZE_URL="https://raw.githubusercontent.com/Nitrux/storage/master/Scripts/undebianize"
-SB_KERNEL_URL="https://raw.githubusercontent.com/Nitrux/storage/master/Scripts/sb-kernel"
 
 wget -P "$DEST_DIR" "$LINKER_URL"
 wget -P "$DEST_DIR" "$UNDEBIANIZE_URL"
-wget -P "$DEST_DIR" "$SB_KERNEL_URL"
 
 chmod +x "$DEST_DIR/linker"
 chmod +x "$DEST_DIR/undebianize"
-chmod +x "$DEST_DIR/sb-kernel"
 
 
 # -- Edit Kvantum Manager launcher.
