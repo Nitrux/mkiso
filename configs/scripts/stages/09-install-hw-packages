@@ -51,6 +51,7 @@ install $NITRUX_HW_PKGS
 
 
 # -- Install xpadneo and xone drivers using their installer scripts.
+# -- The developer of xpadneo updated the install script on 19/12/24 (commit 875d5aa6d5789717ea5c02e4025bd398f248713d) to exit on errors with the comment "Fixes a problem where the installer would not exit if the git clone is not properly set up." However, the script was working fine, installing the driver with DKMS. While now, it simply quits.
 # -- FIXME: There are no Debian packages available, if and when they are, switch to use them instead.
 
 ORIGINAL_DIR=$(pwd)
@@ -64,7 +65,8 @@ cd "$ORIGINAL_DIR"
 TEMP_DIR2=$(mktemp -d)
 git clone https://github.com/atar-axis/xpadneo.git "$TEMP_DIR2"
 cd "$TEMP_DIR2"
-bash install.sh
+sed -i '/^\s*set\s\+-e\s*$/d' install.sh
+sh install.sh
 cd "$ORIGINAL_DIR"
 
 
