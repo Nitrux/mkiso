@@ -35,9 +35,11 @@ source /configs/scripts/others/apt-funcs
 
 GRUB2_PKGS='
 	grub-common
+	grub-coreboot-bin
 	grub-efi-amd64
 	grub-efi-amd64-bin
 	grub-efi-amd64-signed
+	grub-imageboot
 	grub-pc-bin
 	grub2-common
 '
