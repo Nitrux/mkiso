@@ -147,11 +147,6 @@ cp "$(echo "$build_dir"/boot/initrd*  | tr " " "\n" | sort | tail -n 1)" "$iso_d
 cp -r EFI/ "$iso_dir"/
 
 
-# -- Copy ucode to ISO
-
-cp -r ucode/ "$iso_dir"/boot/
-
-
 # -- Compress the root filesystem.
 
 ( while :; do sleep 300; printf ".\n"; done ) &
