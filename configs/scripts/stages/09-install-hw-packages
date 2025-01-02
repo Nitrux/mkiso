@@ -118,3 +118,15 @@ mv "${TMP_DIR}/xr_driver/lib/"* /usr/lib/x86_64-linux-gnu/
 mv "${TMP_DIR}/xr_driver/udev/"* /etc/udev/rules.d/
 
 rm -f "${ARCHIVE_NAME}"
+
+
+# -- Install AX88179_178A Linux driver for AX88179 USB 3.0 Ethernet adapters.
+
+TEMP_DIR3=$(mktemp -d)
+git clone https://github.com/nothingstopsme/AX88179_178A_Linux_Driver.git "$TEMP_DIR3"
+cp -r "$TEMP_DIR3/source" /usr/src/ax88179-1.20
+dkms add -m ax88179 -v 1.20
+dkms build -m ax88179 -v 1.20
+dkms install --force -m ax88179 -v 1.20
+echo "ax88179" | tee /etc/modules-load.d/ax88179.conf
+rm -rf "$TEMP_DIR3"
