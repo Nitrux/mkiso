@@ -408,3 +408,8 @@ chmod +x "$DEST_DIR/undebianize"
 # -- Edit Kvantum Manager launcher.
 
 sed -i 's+Categories=Qt;Utility;Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;+Categories=Qt;Settings;DesktopSettings;LXQt;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;X-GNOME-PersonalSettings;+g' /usr/share/applications/kvantummanager.desktop
+
+
+# -- Enforce sync only for specific filesystems, like vfat.
+
+sed -i -e '$a\[defaults]\nvfat_defaults=sync' /etc/udisks2/mount_options.conf
