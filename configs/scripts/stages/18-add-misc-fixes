@@ -412,4 +412,4 @@ sed -i 's+Categories=Qt;Utility;Settings;DesktopSettings;LXQt;X-XFCE-SettingsDia
 
 # -- Enforce sync only for specific filesystems, like vfat.
 
-sed -i -e '$a\[defaults]\nvfat_defaults=sync' /etc/udisks2/mount_options.conf
+sed -i '/^\[defaults\]/a\vfat_defaults=sync' /etc/udisks2/udisks2.conf
