@@ -36,4 +36,4 @@ OPENRC_CONFIG='
 	openrc-config
 '
 
-install $OPENRC_CONFIG
+install_force_overwrite $OPENRC_CONFIG

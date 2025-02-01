@@ -169,9 +169,9 @@ puts "ADDING CALAMARES INSTALLER."
 
 # -- Upgrade MESA packages.
 
-puts "UPGRADE MESA."
+puts "UPGRADE MULTIMEDIA STACK."
 
-13-upgrade-mesa
+13-upgrade-multimedia-stack
 
 
 # -- Add OpenRC configuration.
@@ -242,5 +242,7 @@ puts "PERFORM MANUAL CHECKS."
 20-manual-checks
 
 puts "EXITING BOOTSTRAP."
+
+puts ""
 
 #====================	END

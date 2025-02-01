@@ -50,6 +50,7 @@ NX_DESKTOP_PKG='
 
 FH_SIGH_PKGS='
 	polkit-kde-agent-1=4:5.27.11-1
+	ppp=2.5.1-1+1
 '
 
 install $NX_DESKTOP_PKG $FH_SIGH_PKGS

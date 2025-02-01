@@ -30,13 +30,13 @@ set -eu
 source /configs/scripts/others/apt-funcs
 
 
-# -- Upgrade the MESA packages.
+# -- Upgrade the entire multimedia stack using packages from Debian unstable.
 
 cp /configs/files/sources/sources.list.debian.unstable /etc/apt/sources.list.d/debian-unstable-repo.list
 
 update
 
-MESA_LIBS_PKGS='
+MESA_PKGS='
     libegl-mesa0/unstable
     libgbm1/unstable
     libgl1-mesa-dri/unstable
@@ -48,7 +48,34 @@ MESA_LIBS_PKGS='
     mesa-vulkan-drivers/unstable
 '
 
-only_upgrade $MESA_LIBS_PKGS
+only_upgrade $MESA_PKGS
+
+ALSA_PKGS='
+    alsa-tools/unstable
+    alsa-ucm-conf/unstable
+    alsa-utils/unstable
+    libasound2-data/unstable
+    libasound2-plugins/unstable
+    libasound2t64/unstable
+    libatopology2t64/unstable
+'
+
+only_upgrade $ALSA_PKGS
+
+PULSE_PKGS='
+    gstreamer1.0-pulseaudio/unstable
+    libcanberra-pulse/unstable
+    libpulse-mainloop-glib0/unstable
+    libpulse0/unstable
+    libpulsedsp/unstable
+    pulseaudio/unstable
+    pulseaudio-module-bluetooth/unstable
+    pulseaudio-utils/unstable
+'
+
+only_upgrade $PULSE_PKGS
+
+autoremove
 
 rm \
 	/etc/apt/sources.list.d/debian-unstable-repo.list
