@@ -345,11 +345,6 @@ Icon=nx-software-center
 MimeType=application/vnd.appimage;application/x-executable;
 
 SingleMainWindow=true
-
-[Desktop Action FirejailProfile]
-Exec=firejail --env=DESKTOPINTEGRATION=appimaged --private --appimage /Applications/nx-software-center
-Name=Run without sandbox profile
-TryExec=firejail
 EOF
 
 
