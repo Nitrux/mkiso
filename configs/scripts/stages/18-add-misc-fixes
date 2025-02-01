@@ -333,8 +333,8 @@ cat << EOF > "$DESKTOP_FILE"
 [Desktop Entry]
 Name=NX Software Center
 Comment=Software store for AppImages
-TryExec=/Applications/nx-software-center
 Exec=/Applications/nx-software-center %U
+TryExec=/Applications/nx-software-center
 Keywords=program;software;repository;package;install;remove;update;apps;applications;appimage;
 Terminal=false
 Type=Application
