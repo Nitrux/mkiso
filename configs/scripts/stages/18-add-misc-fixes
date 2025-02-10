@@ -440,3 +440,13 @@ sed -i \
     -e "/If\.SOFVendor {/,/}/s/Type Empty/Type String/" \
     -e "/If\.SOFVendor {/,/}/s/String \"\${var:SOFVendor}\"/Empty \"\${var:SOFVendor}\"/" \
     /usr/share/alsa/ucm2/Intel/sof-hda-dsp/HiFi-sof.conf
+
+
+# -- Fix issue with AppArmor profile for Samba that is too restrictive.
+
+APPARMOR_PROFILE="/etc/apparmor.d/usr.sbin.smbd"
+
+sed -i '/capability setuid,/a\  capability change_profile,\n  capability sys_ptrace,' "$APPARMOR_PROFILE"
+sed -i 's|@{HOMEDIRS}/\*\* .*|@{HOMEDIRS}/** rwk,|' "$APPARMOR_PROFILE"
+
+apparmor_parser -r "$APPARMOR_PROFILE"
