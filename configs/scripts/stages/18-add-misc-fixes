@@ -448,5 +448,3 @@ APPARMOR_PROFILE="/etc/apparmor.d/usr.sbin.smbd"
 
 sed -i '/capability setuid,/a\  capability change_profile,\n  capability sys_ptrace,' "$APPARMOR_PROFILE"
 sed -i 's|@{HOMEDIRS}/\*\* .*|@{HOMEDIRS}/** rwk,|' "$APPARMOR_PROFILE"
-
-apparmor_parser -r "$APPARMOR_PROFILE"
