@@ -153,53 +153,60 @@ puts "ADDING NVIDIA DRIVERS."
 10-install-nvidia-drivers
 
 
+# -- Add AMDGPU-PRO drivers.
+
+puts "ADDING AMDGPU-PRO DRIVERS."
+
+11-install-amdgpu-pro-drivers
+
+
 # -- Add NX Desktop meta-package.
 
 puts "ADDING NX DESKTOP."
 
-11-install-desktop-session
+12-install-desktop-session
 
 
 # -- Add Calamares.
 
 puts "ADDING CALAMARES INSTALLER."
 
-12-install-calamares
+13-install-calamares
 
 
 # -- Upgrade MESA packages.
 
 puts "UPGRADE MULTIMEDIA STACK."
 
-13-upgrade-multimedia-stack
+14-upgrade-multimedia-stack
 
 
 # -- Add OpenRC configuration.
 
 puts "ADDING OPENRC CONFIG."
 
-14-install-init-config
+15-install-init-config
 
 
 # -- Add Live user configuration.
 
 puts "ADDING LIVE USER CONFIG."
 
-15-add-live-user
+16-add-live-user
 
 
 # -- Add initramfs scripts.
 
 puts "ADDING INITRAM SCRIPTS"
 
-16-update-initram-config
+17-update-initram-config
 
 
 # -- Remove sources used to build the root.
 
 puts "REMOVE BUILD SOURCES."
 
-17-remove-build-sources
+18-remove-build-sources
 
 
 #################################
@@ -213,7 +220,7 @@ puts "REMOVE BUILD SOURCES."
 
 puts "ADDING MISC. FIXES."
 
-18-add-misc-fixes
+19-add-misc-fixes
 
 
 # -- Changes specific to this image. If they can be put in a package, do so.
@@ -221,7 +228,7 @@ puts "ADDING MISC. FIXES."
 
 puts "EDITING CONF. FILES."
 
-19-edit-conf-files
+20-edit-conf-files
 
 
 #############################
@@ -239,7 +246,7 @@ list_installed_text_end
 
 puts "PERFORM MANUAL CHECKS."
 
-20-manual-checks
+21-manual-checks
 
 puts "EXITING BOOTSTRAP."
 

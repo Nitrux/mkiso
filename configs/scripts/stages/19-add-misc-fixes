@@ -323,31 +323,6 @@ sed -i 's+Categories=System;Settings;+Categories=Settings;+g' /usr/share/applica
 sed -i 's+Categories=System;Settings;Utility;+Categories=Utility;+g' /usr/share/applications/org.corectrl.CoreCtrl.desktop
 
 
-# -- Only download NXSC AppImage.
-
-download_appimage "nx-software-center" "https://github.com/Nitrux/nx-software-center/releases/download/latest/nx-software-center-latest-x86_64.AppImage"
-
-DESKTOP_FILE="/usr/share/applications/org.nx.softwarecenter.desktop"
-
-cat << EOF > "$DESKTOP_FILE"
-[Desktop Entry]
-Name=NX Software Center
-Comment=Software store for AppImages
-Exec=/Applications/nx-software-center %U
-TryExec=/Applications/nx-software-center
-Keywords=program;software;repository;package;install;remove;update;apps;applications;appimage;
-Terminal=false
-Type=Application
-GenericName=Software Center
-Categories=Qt;KDE;System;
-StartupNotify=true
-Icon=nx-software-center
-MimeType=application/vnd.appimage;application/x-executable;
-
-SingleMainWindow=true
-EOF
-
-
 # -- Create links for dbab lists in /etc/NetworkManager/dnsmasq.d.
 
 ln -sv /etc/dnsmasq.d/dbab-map.adblock.conf /etc/NetworkManager/dnsmasq.d/dbab-map.adblock.conf
