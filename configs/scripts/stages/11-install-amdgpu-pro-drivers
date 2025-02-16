@@ -3,7 +3,7 @@
 #############################################################################################################################################################################
 #   The license used for this file and its contents is: BSD-3-Clause                                                                                                        #
 #                                                                                                                                                                           #
-#   Copyright <2023-2024> <Uri Herrera <uri_herrera@nxos.org>>                                                                                                              #
+#   Copyright <2023-2025> <Uri Herrera <uri_herrera@nxos.org>>                                                                                                              #
 #                                                                                                                                                                           #
 #   Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:                          #
 #                                                                                                                                                                           #
@@ -41,4 +41,4 @@ install $AMDGPU_PRO_DRV_PKGS
 
 # -- Install the components we want from the AMDGPU-PRO stack.
 
-amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=legacy --opengl=mesa
+amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=rocr --opengl=mesa
