@@ -39,6 +39,17 @@ AMDGPU_PRO_DRV_PKGS='
 install $AMDGPU_PRO_DRV_PKGS
 
 
+# -- Replace ID in os-release because amdgpu-install refuses to install.
+
+sed -i 's/^ID=nitrux$/ID=ubuntu/' /etc/os-release
+
+
 # -- Install the components we want from the AMDGPU-PRO stack.
 
 amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=rocr --opengl=mesa --no-32
+
+
+# -- Restore ID in os-release.
+
+sed -i 's/^ID=ubuntu$/ID=nitrux/' /etc/os-release
+
