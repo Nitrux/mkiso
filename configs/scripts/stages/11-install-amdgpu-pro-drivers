@@ -41,4 +41,4 @@ install $AMDGPU_PRO_DRV_PKGS
 
 # -- Install the components we want from the AMDGPU-PRO stack.
 
-amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=rocr --opengl=mesa
+amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=rocr --opengl=mesa --no-32
