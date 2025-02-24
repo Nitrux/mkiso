@@ -41,7 +41,7 @@ update
 
 
 DEFAULT_KERNEL_PKG='
-	linux-image-liquorix
+	linux-image-pikaos
 '
 
 install $DEFAULT_KERNEL_PKG
