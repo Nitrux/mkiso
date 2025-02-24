@@ -42,9 +42,9 @@ update
 
 DEFAULT_KERNEL_PKG='
 	linux-image-pikaos
+	clang
 '
-pkg_policy clang
-exit 1
+
 install $DEFAULT_KERNEL_PKG
 
 rm \
