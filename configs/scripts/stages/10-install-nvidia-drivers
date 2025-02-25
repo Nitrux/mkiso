@@ -60,29 +60,12 @@ NVIDIA_DRV_BUILD_PKGS='
 install $NVIDIA_DRV_BUILD_PKGS
 
 
-# -- When using a kernel compiled with Clang, turn off unsupported flags in Makefile or environment variables, which causes the NVIDIA installer to fail to build the modules with dkms.
-# -- These compile flags are inherited from the kernel headers.  Or, edit the headers Makefile and remove the flags, or do both.
-
-export KCFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
-export CFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
-export CXXFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
-export NVCCFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
-export EXTRA_CFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
-export EXTRA_LDFLAGS="-fno-lto"
-
-sed -i 's/CC_FLAGS_LTO := -flto=thin -fsplit-lto-unit/CC_FLAGS_LTO :=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
-sed -i 's/CC_FLAGS_LTO := -flto=thin/CC_FLAGS_LTO :=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
-sed -i 's/LDFLAGS_vmlinux += -flto/LDFLAGS_vmlinux +=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
-sed -i 's/KBUILD_CFLAGS += -flto=thin/KBUILD_CFLAGS +=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
-sed -i 's/RETPOLINE_CFLAGS := -mretpoline-external-thunk/RETPOLINE_CFLAGS :=/' /usr/src/linux-headers-"$(uname -r)"/arch/x86/Makefile
-
-
 # -- Execute the installer.
 
 chmod +x "$DESTINATION"/*
 for NV_DRV_RUN in "$DESTINATION"/*; do
     if [ -x "$NV_DRV_RUN" ]; then
-        "$NV_DRV_RUN" --dkms -s
+        "$NV_DRV_RUN" --dkms -s --no-unified-memory
     fi
 done
 
