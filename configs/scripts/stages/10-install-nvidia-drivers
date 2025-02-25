@@ -60,10 +60,12 @@ NVIDIA_DRV_BUILD_PKGS='
 install $NVIDIA_DRV_BUILD_PKGS
 
 
-# -- When using a kernel compiled with Clang, disable unsupported flags in Makefile or environment variables.
+# -- When using a kernel compiled with Clang, turn off unsupported flags in Makefile or environment variables, which causes the NVIDIA installer to fail to build the modules with dkms.
+# -- These compile flags are inherited from the kernel headers.
 
-export CFLAGS="-U_mretpoline-external-thunk -U_fsplit-lto-unit"
-export CXXFLAGS="-U_mretpoline-external-thunk -U_fsplit-lto-unit"
+export KCFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk"
+export CFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
+export CXXFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
 
 
 # -- Execute the installer.
@@ -104,6 +106,7 @@ cp /usr/share/doc/NVIDIA_GLX-1.0/nvidia-dbus.conf /etc/dbus-1/system.d
 # -- Remove build dependencies.
 
 NVIDIA_DRV_DEL_PKGS='
+	libelf-dev
 	libglvnd-core-dev
 	libglvnd-dev
 	pkgconf
