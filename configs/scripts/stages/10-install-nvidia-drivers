@@ -67,8 +67,11 @@ export KCFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk"
 export CFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
 export CXXFLAGS="-U_fsplit-lto-unit -U_mretpoline-external-thunk -fno-lto"
 
-sed -i 's/CC_FLAGS_LTO\t:= -flto=thin -fsplit-lto-unit/CC_FLAGS_LTO\t:= -flto=thin/' /usr/src/linux-headers-"$(uname -r)"/Makefile
-sed -i 's/RETPOLINE_CFLAGS\t:= -mretpoline-external-thunk/RETPOLINE_CFLAGS\t:=/' /usr/src/linux-headers-"$(uname -r)"/arch/x86/Makefile
+sed -i 's/CC_FLAGS_LTO := -flto=thin -fsplit-lto-unit/CC_FLAGS_LTO :=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
+sed -i 's/CC_FLAGS_LTO := -flto=thin/CC_FLAGS_LTO :=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
+sed -i 's/LDFLAGS_vmlinux += -flto/LDFLAGS_vmlinux +=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
+sed -i 's/KBUILD_CFLAGS += -flto=thin/KBUILD_CFLAGS +=/' /usr/src/linux-headers-"$(uname -r)"/Makefile
+sed -i 's/RETPOLINE_CFLAGS := -mretpoline-external-thunk/RETPOLINE_CFLAGS :=/' /usr/src/linux-headers-"$(uname -r)"/arch/x86/Makefile
 
 
 # -- Execute the installer.
