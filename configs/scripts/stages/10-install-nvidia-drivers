@@ -51,12 +51,19 @@ axel -a -q -k -U "$USER_AGENT" -n 8 "$FULL_URL" -o "${DESTINATION}/$(basename "$
 
 NVIDIA_DRV_BUILD_PKGS='
 	build-essential
+	libelf-dev
 	libglvnd-core-dev
 	libglvnd-dev
 	pkgconf
 '
 
 install $NVIDIA_DRV_BUILD_PKGS
+
+
+# -- When using a kernel compiled with Clang, disable unsupported flags in Makefile or environment variables.
+
+export CFLAGS="-U_mretpoline-external-thunk -U_fsplit-lto-unit"
+export CXXFLAGS="-U_mretpoline-external-thunk -U_fsplit-lto-unit"
 
 
 # -- Execute the installer.
@@ -89,7 +96,7 @@ fi
 
 
 # -- Add D-Bus configuration file for NVIDIA Dynamic Boost.
-# -- The official instructions indicate to put it /etc/dbus-1/system, but I don't know if it will work.
+# -- The official instructions indicate to put it /etc/dbus-1/system.d, but I don't know if it will work.
 
 cp /usr/share/doc/NVIDIA_GLX-1.0/nvidia-dbus.conf /etc/dbus-1/system.d
 
