@@ -82,7 +82,7 @@ sed -i 's/RETPOLINE_CFLAGS := -mretpoline-external-thunk/RETPOLINE_CFLAGS :=/' /
 chmod +x "$DESTINATION"/*
 for NV_DRV_RUN in "$DESTINATION"/*; do
     if [ -x "$NV_DRV_RUN" ]; then
-        "$NV_DRV_RUN" --dkms -s
+        "$NV_DRV_RUN" -s
     fi
 done
 
