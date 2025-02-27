@@ -157,7 +157,7 @@ puts "ADDING NVIDIA DRIVERS."
 
 puts "ADDING AMDGPU-PRO DRIVERS."
 
-# 11-install-amdgpu-pro-drivers
+11-install-amdgpu-pro-drivers
 
 
 # -- Add NX Desktop meta-package.

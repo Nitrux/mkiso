@@ -46,7 +46,7 @@ sed -i 's/^ID=nitrux$/ID=ubuntu/' /etc/os-release
 
 # -- Install the components we want from the AMDGPU-PRO stack.
 
-amdgpu-install -y --accept-eula --usecase=graphics,opencl --opencl=rocr --opengl=mesa --no-32 --no-dkms
+amdgpu-install -y --accept-eula --usecase=opencl --opencl=rocr
 
 
 # -- Restore ID in os-release.
