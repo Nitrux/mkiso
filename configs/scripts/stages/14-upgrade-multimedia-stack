@@ -36,19 +36,19 @@ cp /configs/files/sources/sources.list.debian.unstable /etc/apt/sources.list.d/d
 
 update
 
-# MESA_PKGS='
-#     libegl-mesa0/unstable
-#     libgbm1/unstable
-#     libgl1-mesa-dri/unstable
-#     libglapi-mesa/unstable
-#     libglx-mesa0/unstable
-#     libxatracker2/unstable
-#     mesa-va-drivers/unstable
-#     mesa-vdpau-drivers/unstable
-#     mesa-vulkan-drivers/unstable
-# '
+MESA_PKGS='
+    libegl-mesa0/unstable
+    libgbm1/unstable
+    libgl1-mesa-dri/unstable
+    libglapi-mesa/unstable
+    libglx-mesa0/unstable
+    libxatracker2/unstable
+    mesa-va-drivers/unstable
+    mesa-vdpau-drivers/unstable
+    mesa-vulkan-drivers/unstable
+'
 
-# only_upgrade $MESA_PKGS
+only_upgrade $MESA_PKGS
 
 ALSA_PKGS='
     alsa-tools/unstable
