@@ -39,7 +39,7 @@ AMDGPU_PRO_DRV_PKGS='
 install $AMDGPU_PRO_DRV_PKGS
 
 
-# -- Replace ID in os-release because amdgpu-install refuses to install.
+# -- Replace ID in os-release because amdgpu-install refuses to install if it's not Ubuntu.
 
 sed -i 's/^ID=nitrux$/ID=ubuntu/' /etc/os-release
 
